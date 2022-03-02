@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Searching on the space of text representations
-# description: short project description
+description: Searching on the space of text representations
 ---
 
 [EvoMSA](https://ieeexplore.ieee.org/document/8956106) combines text representations using a stacking generalization approach. There are five different text representations: a BoW using the training set, a model trained with a human-annotated dataset, a thumbs up-down lexicon, a self-supervised approach on emojis, and FastText representation.  

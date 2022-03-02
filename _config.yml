@@ -5,7 +5,7 @@ title: Mario Graff
 
 baseurl: "" #name of GitHub repository
 url: "" #custom url to be used instead of GitHub repository
-email: mgraffg@ieee.org
+email: mgraffg at ieee.org
 
 
 highlighter: rouge
@@ -46,6 +46,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  teaching:
+    output: true
+    permalink: /teaching/:path/
 
 sass:
   sass_dir: /assets/css/_sass

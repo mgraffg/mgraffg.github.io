@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Describing Events in Twitter Data
-# description: with no page entry here
+description: Describing Events in Twitter Data
 # redirect: https://unsplash.com
 ---
 
