@@ -46,9 +46,13 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  software:
+    output: true
+    permalink: /software/:path/
   teaching:
     output: true
     permalink: /teaching/:path/
+  
 
 sass:
   sass_dir: /assets/css/_sass
