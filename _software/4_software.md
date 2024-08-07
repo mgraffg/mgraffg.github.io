@@ -1,11 +1,11 @@
 ---
 layout: post
-title: text_models
-description: Python library for exploratory data analysis on twitter
+title: CompStats
+description: Python library for comparing algorithms' performance
 ---
 
-Twitter is perhaps the social media more amenable for research. It requires only a few steps to obtain information, and there are plenty of libraries that can help in this regard. Nonetheless, knowing whether a particular event is expressed on Twitter is a challenging task that requires a considerable collection of tweets. This library aims to facilitate, to a researcher interested, the process of mining events on Twitter by opening a collection of processed information taken from Twitter since December 2015. The events could be related to natural disasters, health issues, and people's mobility, among other studies that can be pursued with the library proposed. In summary, the Python library retrieves a plethora of information in terms of frequencies by day of words and bi-grams of words for Arabic, English, Spanish, and Russian languages. As well as mobility information related to the number of travels among locations for more than 200 countries or territories.
+Collaborative competitions have gained popularity in the scientific and technological fields. These competitions involve defining tasks, selecting evaluation scores, and devising result verification methods. In the standard scenario, participants receive a training set and are expected to provide a solution for a held-out dataset kept by organizers. An essential challenge for organizers arises when comparing algorithms' performance, assessing multiple participants, and ranking them. Statistical tools are often used for this purpose; however, traditional statistical methods often fail to capture decisive differences between systems' performance. CompStats implements an evaluation methodology for statistically analyzing competition results and competition. CompStats offers several advantages, including off-the-shell comparisons with correction mechanisms and the inclusion of confidence intervals.
 
-Source Code in <a class="social-button github" href="https://www.github.com/INGEOTEC/text_models" itemprop="sameAs" target="_blank"> <i class="fab fa-github"></i>
+Source Code in <a class="social-button github" href="https://www.github.com/INGEOTEC/compstats" itemprop="sameAs" target="_blank"> <i class="fab fa-github"></i>
 
-The documentation is on [readthedocs](https://text_models.readthedocs.io).
+The documentation is on [readthedocs](https://compstats.readthedocs.io).

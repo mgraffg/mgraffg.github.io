@@ -52,6 +52,9 @@ collections:
   teaching:
     output: true
     permalink: /teaching/:path/
+  talk:
+    output: true
+    permalink: /talk/:path/    
   
 
 sass:
