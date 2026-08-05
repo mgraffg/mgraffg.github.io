@@ -1,7 +1,7 @@
 ---
-layout: post
-title: $\mu\text{TC}$
-description: A text classifier with a minimalistic approach
+title: '$\mu\text{TC}$'
+excerpt: "A text classifier with a minimalistic approach"
+collection: software
 ---
 
 $\mu$TC is a minimalist text classifier, that is, it is designed to tackle text-classification problems in an agnostic way, being both domain and language independent.

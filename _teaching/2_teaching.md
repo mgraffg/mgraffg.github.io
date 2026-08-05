@@ -1,6 +1,8 @@
 ---
-layout: post
-title: Natural Language Processing
-description: Introduce the students to the field of Natural Language Processing.
-redirect: https://ingeotec.github.io/NLP-Course/
+title: "Natural Language Processing"
+excerpt: "Introduce the students to the field of Natural Language Processing."
+collection: teaching
+type: "Course"
+venue: "INGEOTEC"
+link: https://ingeotec.github.io/NLP-Course/
 ---

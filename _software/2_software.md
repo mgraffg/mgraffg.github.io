@@ -1,7 +1,7 @@
 ---
-layout: post
-title: B4MSA
-description: A Baseline for Multilingual Sentiment Analysis
+title: "B4MSA"
+excerpt: "A Baseline for Multilingual Sentiment Analysis"
+collection: software
 ---
 
 b4msa is multilingual framework, that can be served as a baseline for sentiment analysis classifiers, as well as a starting point to build new sentiment analysis systems.

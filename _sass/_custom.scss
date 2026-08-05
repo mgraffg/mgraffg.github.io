@@ -1,0 +1,21 @@
+/*
+   layout/_footer.scss sets `.page__footer { position: fixed; bottom: 0; }`, which
+   directly contradicts its own comment ("keep footer in normal document flow so custom
+   widgets do not overlap content"). Because the author sidebar (layout/_sidebar.scss) is
+   *also* `position: fixed; height: 100vh`, a fixed footer ends up pinned to the same
+   screen region as the sidebar's tail on any page whose main content is shorter than the
+   sidebar's own content (bio + social links), interleaving their text.
+
+   Restoring the footer to normal document flow (the behavior its own comment describes)
+   fixes that. #main then needs a minimum height so short pages still push the footer
+   below the fixed sidebar instead of right after a couple of lines of bio.
+*/
+.page__footer {
+  position: static;
+}
+
+#main {
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    min-height: calc(100vh - #{$masthead-height});
+  }
+}
