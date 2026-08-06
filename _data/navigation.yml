@@ -1,20 +1,14 @@
-# Order of the links in the site header, per the section map agreed in issue #4.
+# Order of the links in the site header, per the section map agreed in issue #9.
 
 main:
+  - title: "Research software"
+    url: /software/
+
   - title: "Publications"
     url: /publications/
 
-  - title: "Portfolio"
-    url: /portfolio/
-
-  - title: "Software"
-    url: /software/
-
-  - title: "CV"
-    url: /cv/
-
-  - title: "Teaching"
-    url: /teaching/
+  - title: "Course Textbooks"
+    url: /course-textbooks/
 
   - title: "Talks"
     url: /talks/
