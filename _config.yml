@@ -22,13 +22,13 @@ repository               : "mgraffg/mgraffg.github.io"
 author:
   avatar           : "profile.png"
   name             : *name
-  bio              : 'Mario Graff is a Researcher of the National Council of Science and Technology (<a href="http://www.conacyt.mx">CONACYT</a>) of Mexico commission to <a href="http://www.infotec.mx">INFOTEC</a>, where he researches in the fields of Machine Learning, Evolutionary Computation (EC), and Natural Language Processing (NLP).'
+  bio              : 'Mario Graff is a Researcher of the National Council of Science and Technology (<a href="http://www.conacyt.mx">CONACYT</a>) of Mexico commission to <a href="http://www.infotec.mx">INFOTEC</a>.'
   location         :
   employer         : "INFOTEC"
   email            : "mgraffg@ieee.org"
 
   # Academic websites
-  googlescholar    : # URL - populated by the Google Scholar update workflow (issue #7)
+  googlescholar    : "https://scholar.google.com/citations?user=euNI6oEAAAAJ" # URL - populated by the Google Scholar update workflow (issue #7)
   orcid            : "https://orcid.org/0000-0001-6573-4142"
 
   # Repositories and software development
