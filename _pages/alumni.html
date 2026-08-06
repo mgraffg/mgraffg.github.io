@@ -1,0 +1,16 @@
+---
+title: "Alumni"
+layout: archive
+permalink: /alumni/
+author_profile: true
+---
+
+{% include base_path %}
+
+{% if site.alumni.size == 0 %}
+  <p>Esta sección aún no tiene contenido (ver <a href="https://github.com/mgraffg/mgraffg.github.io/issues/12">issue #12</a>).</p>
+{% endif %}
+
+{% for post in site.alumni %}
+  {% include archive-single.html %}
+{% endfor %}
