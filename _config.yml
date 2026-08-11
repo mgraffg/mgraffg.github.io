@@ -47,6 +47,18 @@ publication_category:
   conferences:
     title: 'Conference Papers'
 
+# Software Category
+software_category:
+  legalia:
+    title: 'Legal Text Analytics'
+    description: "Tools for the automated analysis of legal texts in the Mexican context. The initial focus is the Diario Oficial de la Federación (DOF), Mexico's official gazette, which has published more than 1.2 million legal provisions since 1917."
+  compstats:
+    title: 'Statistical Comparison of Algorithms'
+    description: "A methodology and toolset for statistically comparing the performance of algorithms in scientific and technological competitions, offering off-the-shelf comparisons with correction mechanisms and confidence intervals."
+  textclassification:
+    title: 'Text Classification'
+    description: "Research on text classification, from bag-of-words baselines to dialect identification, together with tools for large-scale text mining."
+
 # Site Settings
 breadcrumbs              : false
 words_per_minute         : 160

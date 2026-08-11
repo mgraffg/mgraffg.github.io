@@ -2,6 +2,8 @@
 title: "CompStats"
 excerpt: "Python library for comparing algorithms' performance"
 collection: software
+category: compstats
+github: "https://www.github.com/INGEOTEC/compstats"
 ---
 
 Collaborative competitions have gained popularity in the scientific and technological fields. These competitions involve defining tasks, selecting evaluation scores, and devising result verification methods. In the standard scenario, participants receive a training set and are expected to provide a solution for a held-out dataset kept by organizers. An essential challenge for organizers arises when comparing algorithms' performance, assessing multiple participants, and ranking them. Statistical tools are often used for this purpose; however, traditional statistical methods often fail to capture decisive differences between systems' performance. CompStats implements an evaluation methodology for statistically analyzing competition results and competition. CompStats offers several advantages, including off-the-shell comparisons with correction mechanisms and the inclusion of confidence intervals.

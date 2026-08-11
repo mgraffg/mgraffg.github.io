@@ -2,6 +2,8 @@
 title: '$\mu\text{TC}$'
 excerpt: "A text classifier with a minimalistic approach"
 collection: software
+category: textclassification
+github: "https://www.github.com/INGEOTEC/microtc"
 ---
 
 $\mu$TC is a minimalist text classifier, that is, it is designed to tackle text-classification problems in an agnostic way, being both domain and language independent.

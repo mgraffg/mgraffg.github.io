@@ -7,6 +7,25 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.software %}
-  {% include archive-single.html %}
-{% endfor %}
+{% if site.software_category %}
+  {% for category in site.software_category %}
+    <section class="software-theme">
+      <h2 class="software-theme__title archive__subtitle">{{ category[1].title }}</h2>
+      {% if category[1].description %}
+        <p class="software-theme__description">{{ category[1].description }}</p>
+      {% endif %}
+      <div class="software-theme__items">
+        {% for post in site.software %}
+          {% if post.category != category[0] %}
+            {% continue %}
+          {% endif %}
+          {% include archive-single-software.html %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+{% else %}
+  {% for post in site.software %}
+    {% include archive-single-software.html %}
+  {% endfor %}
+{% endif %}
