@@ -1,7 +1,7 @@
 ---
 title: "Text Classification"
-excerpt: "Introduction to Text Classification based on Bag of Words."
+excerpt: "Curso introductorio sobre clasificación de textos y minería de opinión para públicos académicos."
 collection: talks
-type: "Talk"
+type: "Curso"
 link: https://ingeotec.github.io/talks/TextClassification/general.html
 ---
