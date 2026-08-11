@@ -1,6 +1,6 @@
 ---
 title: "Text Classification"
-excerpt: "Curso introductorio sobre clasificación de textos y minería de opinión para públicos académicos."
+excerpt: "Introductory course on text classification and opinion mining for academic audiences."
 collection: talks
 type: "Curso"
 link: https://ingeotec.github.io/talks/TextClassification/general.html
