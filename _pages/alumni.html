@@ -11,6 +11,6 @@ author_profile: true
   <p>Esta sección aún no tiene contenido (ver <a href="https://github.com/mgraffg/mgraffg.github.io/issues/12">issue #12</a>).</p>
 {% endif %}
 
-{% for post in site.alumni %}
-  {% include archive-single.html %}
+{% for post in site.alumni reversed %}
+  {% include archive-single-alumni.html %}
 {% endfor %}
