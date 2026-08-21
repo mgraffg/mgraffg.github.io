@@ -6,7 +6,7 @@
 
     {% if post.thesis_title %}
       <p class="archive__item-excerpt" itemprop="description">
-        {{ post.role }}{% if post.year %} ({{ post.year }}){% endif %}{% if post.institution %}, {{ post.institution }}{% endif %}: <em>{{ post.thesis_title }}</em>
+        {{ post.role }}{% if post.year %} ({{ post.year }}){% endif %}{% if post.institution %}, {{ post.institution }}{% endif %}: <em>{% if post.repository_url %}<a href="{{ post.repository_url }}" target="_blank" rel="noopener">{{ post.thesis_title }}</a>{% else %}{{ post.thesis_title }}{% endif %}</em>
       </p>
     {% endif %}
   </article>

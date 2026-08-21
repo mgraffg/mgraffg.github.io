@@ -1,9 +1,9 @@
 ---
-title: "Jose Ortiz Bejar"
+title: "Claudia Nayelli Sánchez Gómez"
 collection: alumni
-thesis_title: "A family of classifiers based on feature space transformations and model selection"
+thesis_title: "Selection Heuristics on Semantic Genetic Programming for Classification Problems"
 degree: "Ph.D."
-role: "Co-Director"
+role: "Director"
 institution: "INFOTEC"
 year: 2020
 ---

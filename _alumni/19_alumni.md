@@ -1,7 +1,7 @@
 ---
-title: "Hugo Hernández Aceves"
+title: "Jesús Aparicio Bocarando"
 collection: alumni
-thesis_title: "Predicción de fallos en redes Wi-Fi mediante aprendizaje computacional"
+thesis_title: "Análisis semántico de las conferencias presidenciales de México"
 degree: "Master's"
 role: "Director"
 institution: "INFOTEC"

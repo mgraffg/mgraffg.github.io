@@ -11,9 +11,11 @@ CV data, see CLAUDE.md) and generates:
     documents with output disabled in _config.yml: they only ever appear
     listed on /publications/, never as their own page.
   - _alumni/*.md         from thesis supervisions where the profile owner
-    acted as Director or Co-Director, with the advisee's degree and
-    graduating institution. Same as above: listing-only, no individual
-    page per advisee.
+    acted as Director or Co-Director, with the advisee's degree, graduating
+    institution, and a link to the thesis repository when the profile has
+    one that is actually public (never the private cloud.secihti.mx/
+    tlapiakali.conahcyt.mx document storage links). Same as above:
+    listing-only, no individual page per advisee.
 
 Usage:
     python3 scripts/perfil_to_site.py [path/to/perfil.json]
@@ -28,6 +30,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -54,6 +57,15 @@ INSTITUTION_SNP_CODES = {
     "37": "INFOTEC",
     "138": "Universidad Michoacana de San Nicolás de Hidalgo (UMSNH)",
 }
+
+# tesisDirigidas.documento.uri normally points to cloud.secihti.mx or
+# tlapiakali.conahcyt.mx: personal document storage tied to the SECIHTI
+# account, not a public thesis repository (filenames are things like
+# "Claudia.pdf" or an internal advisory letter, not a repository record).
+# Only a URL hosted outside these domains is treated as a public repository
+# link (e.g. an institutional repository like INFOTEC's); anything on them
+# is never exposed, no matter what the filename suggests.
+PRIVATE_DOCUMENT_DOMAINS = {"cloud.secihti.mx", "tlapiakali.conahcyt.mx"}
 
 # Maps a perfil.json "aportaciones" bucket to a publication_category key
 # declared in _config.yml.
@@ -154,6 +166,19 @@ def resolve_institution(entry):
     return ""
 
 
+def resolve_repository_url(entry):
+    documento = entry.get("documento")
+    if not isinstance(documento, dict):
+        return ""
+    uri = documento.get("uri") or ""
+    if not uri:
+        return ""
+    host = urlparse(uri).netloc
+    if not host or host in PRIVATE_DOCUMENT_DOMAINS:
+        return ""
+    return uri
+
+
 def collect_alumni(profile):
     perfil = profile.get("perfil") or {}
     if not isinstance(perfil, dict):
@@ -181,9 +206,14 @@ def collect_alumni(profile):
                 continue
             degree_es = (entry.get("gradoAcademico") or {}).get("nombre", "")
             degree_en = DEGREE_EN.get(degree_es, degree_es)
-            date = entry.get("fechaObtencionGrado") or entry.get("fechaAprobacion") or ""
-            year_match = re.search(r"\d{4}", str(date))
+            date = str(entry.get("fechaObtencionGrado") or entry.get("fechaAprobacion") or "")
+            year_match = re.search(r"\d{4}", date)
             year = int(year_match.group(0)) if year_match else 0
+            # Sort by the full graduation date (ISO "YYYY-MM-DD", so a plain
+            # string sort is chronological), not just the year: several
+            # advisees graduated in the same year and must still order
+            # correctly relative to each other.
+            sort_date = date if year_match else "0000-00-00"
             institution = resolve_institution(entry)
             if not institution:
                 print(f"warning: unknown institution for tesisDirigidas entry (id={entry.get('id')}, "
@@ -195,11 +225,13 @@ def collect_alumni(profile):
                 "degree": degree_en,
                 "role": role_en,
                 "year": year,
+                "sort_date": sort_date,
                 "institution": institution,
+                "repository_url": resolve_repository_url(entry),
             })
         except Exception as exc:
             print(f"warning: skipping malformed tesisDirigidas entry (id={entry.get('id')}): {exc}", file=sys.stderr)
-    items.sort(key=lambda a: (a["year"], a["name"]))
+    items.sort(key=lambda a: (a["sort_date"], a["name"]))
     return items
 
 
@@ -248,6 +280,8 @@ def write_alumni(items, out_dir):
         ]
         if item["institution"]:
             lines.append(f"institution: {yaml_str(item['institution'])}")
+        if item["repository_url"]:
+            lines.append(f"repository_url: {yaml_str(item['repository_url'])}")
         if item["year"]:
             lines.append(f"year: {item['year']}")
         lines.append("---")

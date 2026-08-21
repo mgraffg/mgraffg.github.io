@@ -1,9 +1,9 @@
 ---
-title: "Ambrosio de Jesús Torres Mendoza"
+title: "Jorge Enrique Canuto Garibaldi"
 collection: alumni
-thesis_title: "Análisis de sentimientos y emociones en Twitter, concordancia entre figuras públicas y sus seguidores o detractores"
+thesis_title: "Aplicación y evaluación de algoritmos genéticos para la elección de política monetaria en una economía simulada"
 degree: "Master's"
-role: "Director"
+role: "Co-Director"
 institution: "INFOTEC"
 year: 2024
 ---

@@ -90,11 +90,25 @@ de tesis).
 | `titulo` | Título de la tesis → `thesis_title` (verbatim) |
 | `gradoAcademico.nombre` | Grado → `degree` (traducido: Maestría → Master's, Doctorado → Ph.D.) |
 | `rol.nombre` | `role` (Director/Co-Director, traducido a inglés) |
-| `fechaObtencionGrado` (o `fechaAprobacion` si falta) | Año → `year` |
+| `fechaObtencionGrado` (o `fechaAprobacion` si falta) | Año → `year`; la fecha completa (`YYYY-MM-DD`) se usa además como clave de orden (ver abajo) |
 | `claveInstitucionSnp` | `institution`, resuelto mediante una tabla fija en el script (ver abajo) |
+| `documento.uri` | `repository_url`, solo si el dominio no es de almacenamiento privado (ver abajo) |
 
-Campos deliberadamente **no** usados de `tesisDirigidas`: `documento` (enlace
-interno al oficio de asesorías, no público).
+El orden de despliegue (y por lo tanto la numeración descendente en
+`/alumni/`) usa la **fecha completa** de graduación, no solo el año: dos
+personas pueden haberse titulado el mismo año pero en fechas distintas
+(p. ej. Jose Ortiz Bejar, 2020-06-23, se tituló antes que Claudia Nayelli
+Sánchez Gómez, 2020-08-04), y deben ordenarse por esa fecha exacta.
+
+**Sobre `repository_url`:** `documento.uri` en `tesisDirigidas` casi siempre
+apunta a `cloud.secihti.mx` (o `tlapiakali.conahcyt.mx`): almacenamiento
+personal ligado a la cuenta, no un repositorio institucional público (los
+nombres de archivo son cosas como `Claudia.pdf` o el oficio interno de
+asesorías, no un registro de repositorio). El script solo usa esa URL como
+liga a la tesis cuando su dominio **no** es uno de esos dos; si el único
+enlace disponible es privado, `repository_url` se deja vacío. Al día de hoy
+las 23 tesis dirigidas/co-dirigidas solo tienen el enlace privado, así que
+ninguna entrada generada trae `repository_url`.
 
 **Sobre `institution`:** `perfil.json` identifica la institución de cada tesis
 con un código interno del catálogo SNP (`claveInstitucionSnp`), no con un

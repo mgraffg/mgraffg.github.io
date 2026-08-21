@@ -1,7 +1,7 @@
 ---
-title: "Daniela Carmona León"
+title: "Pablo Xavier Noriega Robles"
 collection: alumni
-thesis_title: "INFOTEC-NLP at MiSonGyny 2025: Misogynistic Content Identification in Spanish Song Lyrics Through Splitting and Augmenting Data"
+thesis_title: "Predicción de la aprobación presidencial usando aprendizaje computacional y datos de X (antes Twitter)"
 degree: "Master's"
 role: "Director"
 institution: "INFOTEC"

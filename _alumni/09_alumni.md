@@ -1,9 +1,9 @@
 ---
-title: "Edgar Enrique Isusquiza Martínez"
+title: "Jose Ortiz Bejar"
 collection: alumni
-thesis_title: "Caraterización de la Pobreza por medio de Aprendizaje Supervisado en el Estado de Guanajuato"
-degree: "Master's"
-role: "Director"
+thesis_title: "A family of classifiers based on feature space transformations and model selection"
+degree: "Ph.D."
+role: "Co-Director"
 institution: "INFOTEC"
 year: 2020
 ---

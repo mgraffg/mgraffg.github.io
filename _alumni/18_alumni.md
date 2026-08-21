@@ -1,8 +1,8 @@
 ---
-title: "Emmanuel Santos Rodríguez"
+title: "Sergio Martin Nava Muñoz"
 collection: alumni
-thesis_title: "INFOTEC-NLP at SemEval-2025 Task 11: A Case Study on Transformer-Based Models and Bag of Words"
-degree: "Master's"
+thesis_title: "Analysis of Systems’ Performance in Supervised Learning Challenges"
+degree: "Ph.D."
 role: "Director"
 institution: "INFOTEC"
 year: 2025
