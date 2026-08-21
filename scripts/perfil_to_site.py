@@ -59,12 +59,14 @@ def load_profile(path):
 
 
 def author_name(author):
+    if not isinstance(author, dict):
+        return ""
     parts = [author.get("nombre", ""), author.get("primerApellido", ""), author.get("segundoApellido", "")]
     return " ".join(p for p in parts if p).strip()
 
 
 def build_citation(entry, authors, year):
-    names = [author_name(a) for a in authors]
+    names = [author_name(a) for a in (authors or [])]
     names = [n for n in names if n]
     if len(names) > 1:
         authors_str = ", ".join(names[:-1]) + ", and " + names[-1]
@@ -81,60 +83,86 @@ def build_citation(entry, authors, year):
 
 
 def collect_publications(profile):
-    aportaciones = profile.get("aportaciones", {})
+    aportaciones = profile.get("aportaciones") or {}
+    if not isinstance(aportaciones, dict):
+        print("warning: 'aportaciones' is not an object, skipping all publications", file=sys.stderr)
+        aportaciones = {}
     items = []
     for bucket, category in PUBLICATION_BUCKETS.items():
-        for entry in aportaciones.get(bucket, []):
-            if not entry.get("productoPrincipal"):
+        entries = aportaciones.get(bucket) or []
+        if not isinstance(entries, list):
+            print(f"warning: '{bucket}' is not a list, skipping", file=sys.stderr)
+            continue
+        for entry in entries:
+            if not isinstance(entry, dict):
+                print(f"warning: skipping malformed (non-object) entry in {bucket}", file=sys.stderr)
                 continue
-            title = entry.get("titulo")
-            if not title:
-                print(f"warning: skipping {bucket} entry with no title (id={entry.get('id')})", file=sys.stderr)
-                continue
-            year_raw = entry.get("anio") or "1900"
-            year_match = re.search(r"\d{4}", str(year_raw))
-            year = year_match.group(0) if year_match else "1900"
-            authors = entry.get("autores", [])
-            venue = entry.get("nombreRevista") or entry.get("tituloLibro") or ""
-            items.append({
-                "title": title,
-                "category": category,
-                "date": f"{year}-01-01",
-                "year": int(year),
-                "venue": venue,
-                "citation": build_citation(entry, authors, year),
-                "paperurl": entry.get("doi") or "",
-            })
+            try:
+                if not entry.get("productoPrincipal"):
+                    continue
+                title = entry.get("titulo")
+                if not title:
+                    print(f"warning: skipping {bucket} entry with no title (id={entry.get('id')})", file=sys.stderr)
+                    continue
+                year_raw = entry.get("anio") or "1900"
+                year_match = re.search(r"\d{4}", str(year_raw))
+                year = year_match.group(0) if year_match else "1900"
+                authors = entry.get("autores")
+                venue = entry.get("nombreRevista") or entry.get("tituloLibro") or ""
+                items.append({
+                    "title": title,
+                    "category": category,
+                    "date": f"{year}-01-01",
+                    "year": int(year),
+                    "venue": venue,
+                    "citation": build_citation(entry, authors, year),
+                    "paperurl": entry.get("doi") or "",
+                })
+            except Exception as exc:
+                print(f"warning: skipping malformed entry in {bucket} (id={entry.get('id')}): {exc}", file=sys.stderr)
     items.sort(key=lambda p: (p["year"], p["title"]))
     return items
 
 
 def collect_alumni(profile):
-    tesis = profile.get("perfil", {}).get("tesisDirigidas", [])
+    perfil = profile.get("perfil") or {}
+    if not isinstance(perfil, dict):
+        print("warning: 'perfil' is not an object, skipping all alumni", file=sys.stderr)
+        perfil = {}
+    tesis = perfil.get("tesisDirigidas") or []
+    if not isinstance(tesis, list):
+        print("warning: 'tesisDirigidas' is not a list, skipping all alumni", file=sys.stderr)
+        tesis = []
     items = []
     for entry in tesis:
-        role_es = entry.get("rol", {}).get("nombre", "")
-        role_en = ROLE_EN.get(role_es)
-        if not role_en:
+        if not isinstance(entry, dict):
+            print("warning: skipping malformed (non-object) entry in tesisDirigidas", file=sys.stderr)
             continue
-        name_parts = [entry.get("nombre", ""), entry.get("primerApellido", ""), entry.get("segundoApellido", "")]
-        name = " ".join(p for p in name_parts if p).strip()
-        thesis_title = entry.get("titulo")
-        if not name or not thesis_title:
-            print(f"warning: skipping tesisDirigidas entry with missing name/title (id={entry.get('id')})", file=sys.stderr)
-            continue
-        degree_es = entry.get("gradoAcademico", {}).get("nombre", "")
-        degree_en = DEGREE_EN.get(degree_es, degree_es)
-        date = entry.get("fechaObtencionGrado") or entry.get("fechaAprobacion") or ""
-        year_match = re.search(r"\d{4}", date)
-        year = int(year_match.group(0)) if year_match else 0
-        items.append({
-            "name": name,
-            "thesis_title": thesis_title,
-            "degree": degree_en,
-            "role": role_en,
-            "year": year,
-        })
+        try:
+            role_es = (entry.get("rol") or {}).get("nombre", "")
+            role_en = ROLE_EN.get(role_es)
+            if not role_en:
+                continue
+            name_parts = [entry.get("nombre", ""), entry.get("primerApellido", ""), entry.get("segundoApellido", "")]
+            name = " ".join(p for p in name_parts if p).strip()
+            thesis_title = entry.get("titulo")
+            if not name or not thesis_title:
+                print(f"warning: skipping tesisDirigidas entry with missing name/title (id={entry.get('id')})", file=sys.stderr)
+                continue
+            degree_es = (entry.get("gradoAcademico") or {}).get("nombre", "")
+            degree_en = DEGREE_EN.get(degree_es, degree_es)
+            date = entry.get("fechaObtencionGrado") or entry.get("fechaAprobacion") or ""
+            year_match = re.search(r"\d{4}", str(date))
+            year = int(year_match.group(0)) if year_match else 0
+            items.append({
+                "name": name,
+                "thesis_title": thesis_title,
+                "degree": degree_en,
+                "role": role_en,
+                "year": year,
+            })
+        except Exception as exc:
+            print(f"warning: skipping malformed tesisDirigidas entry (id={entry.get('id')}): {exc}", file=sys.stderr)
     items.sort(key=lambda a: (a["year"], a["name"]))
     return items
 
@@ -191,11 +219,19 @@ def write_alumni(items, out_dir):
 
 def main():
     profile_path = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO_ROOT / "perfil.json"
-    if not profile_path.exists():
+    if not profile_path.is_file():
         print(f"error: profile file not found: {profile_path}", file=sys.stderr)
         return 1
 
-    profile = load_profile(profile_path)
+    try:
+        profile = load_profile(profile_path)
+    except json.JSONDecodeError as exc:
+        print(f"error: {profile_path} is not valid JSON: {exc}", file=sys.stderr)
+        return 1
+
+    if not isinstance(profile, dict):
+        print(f"error: {profile_path} does not contain a JSON object at the top level", file=sys.stderr)
+        return 1
 
     publications = collect_publications(profile)
     n_pub = write_publications(publications, REPO_ROOT / "_publications")

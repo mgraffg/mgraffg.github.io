@@ -35,3 +35,5 @@ python3 scripts/perfil_to_site.py
 ```
 
 Cada ejecución regenera por completo el contenido de `_publications/` y `_alumni/` a partir del `perfil.json` actual (borra las entradas generadas previamente antes de escribir las nuevas), por lo que no requiere intervención manual adicional. Vuelve a correrlo cada vez que se actualice `perfil.json`.
+
+Para el detalle de la estructura de `perfil.json`, qué campos se usan y a qué sección corresponden (y sugerencias de otras secciones a evaluar), ver [`scripts/PERFIL_JSON.md`](scripts/PERFIL_JSON.md).
