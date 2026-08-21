@@ -9,26 +9,27 @@ author_profile: true
 
 {% if site.publications.size == 0 %}
   <p>Esta sección se genera automáticamente a partir de Google Scholar (ver <a href="https://github.com/mgraffg/mgraffg.github.io/issues/7">issue #7</a>) y aún no tiene contenido.</p>
-{% else %}
-  <p>These are the featured publications from my research profile. {% if site.author.googlescholar %}For the complete list, see <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.{% endif %}</p>
+{% elsif site.author.googlescholar %}
+  <p>For the complete list of my publications, see <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</p>
 {% endif %}
 
 {% if site.publication_category %}
   {% for category in site.publication_category %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single-publication.html %}
-    {% endfor %}
+    {% assign cat_items = site.publications | where: "category", category[0] | reverse %}
+    {% if cat_items.size > 0 %}
+      <h2>{{ category[1].title }}</h2><hr />
+      <p class="page__meta">These are the publications marked as featured products in my SECIHTI research profile — typically because the first author is a graduate student I directed or co-directed, or because the work aligns with one of my main research lines.</p>
+      {% assign total = cat_items.size %}
+      {% for post in cat_items %}
+        {% assign number = total | minus: forloop.index0 %}
+        {% include archive-single-publication.html number=number %}
+      {% endfor %}
+    {% endif %}
   {% endfor %}
 {% else %}
+  {% assign total = site.publications.size %}
   {% for post in site.publications reversed %}
-    {% include archive-single-publication.html %}
+    {% assign number = total | minus: forloop.index0 %}
+    {% include archive-single-publication.html number=number %}
   {% endfor %}
 {% endif %}

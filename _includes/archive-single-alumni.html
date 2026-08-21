@@ -2,7 +2,7 @@
 
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/Person">
-    <h3 class="archive__item-title" itemprop="name">{{ post.title }}</h3>
+    <h3 class="archive__item-title" itemprop="name">{% if include.number %}{{ include.number }}. {% endif %}{{ post.title }}</h3>
 
     {% if post.thesis_title %}
       <p class="archive__item-excerpt" itemprop="description">

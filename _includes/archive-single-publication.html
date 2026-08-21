@@ -4,7 +4,7 @@
 
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/ScholarlyArticle">
-    <h3 class="archive__item-title" itemprop="headline">{{ title }}</h3>
+    <h3 class="archive__item-title" itemprop="headline">{% if include.number %}{{ include.number }}. {% endif %}{{ title }}</h3>
 
     {% if post.venue %}
       <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
