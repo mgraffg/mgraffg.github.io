@@ -11,6 +11,30 @@ author_profile: true
   <p>Esta sección aún no tiene contenido (ver <a href="https://github.com/mgraffg/mgraffg.github.io/issues/12">issue #12</a>).</p>
 {% endif %}
 
+{% assign degree_order = "Ph.D.,Master's" | split: "," %}
+{% for degree in degree_order %}
+  {% assign title_shown = false %}
+  {% for post in site.alumni reversed %}
+    {% if post.degree != degree %}
+      {% continue %}
+    {% endif %}
+    {% unless title_shown %}
+      <h2>{{ degree }}</h2><hr />
+      {% assign title_shown = true %}
+    {% endunless %}
+    {% include archive-single-alumni.html %}
+  {% endfor %}
+{% endfor %}
+
+{% comment %} Catch-all for any future degree not in degree_order, so entries never silently disappear. {% endcomment %}
+{% assign title_shown = false %}
 {% for post in site.alumni reversed %}
+  {% if degree_order contains post.degree %}
+    {% continue %}
+  {% endif %}
+  {% unless title_shown %}
+    <h2>Other</h2><hr />
+    {% assign title_shown = true %}
+  {% endunless %}
   {% include archive-single-alumni.html %}
 {% endfor %}

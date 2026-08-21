@@ -109,11 +109,13 @@ kramdown:
 # Collections
 collections:
   publications:
-    output: true
-    permalink: /:collection/:path/
+    # No individual page per publication: they are only ever listed on
+    # /publications/, generated in bulk from perfil.json (see issue #6).
+    output: false
   alumni:
-    output: true
-    permalink: /:collection/:path/
+    # No individual page per advisee: they are only ever listed on
+    # /alumni/, generated in bulk from perfil.json (see issue #6).
+    output: false
   talks:
     output: true
     permalink: /:collection/:path/

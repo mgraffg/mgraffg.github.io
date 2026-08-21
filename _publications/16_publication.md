@@ -6,4 +6,5 @@ date: 2024-01-01
 venue: "Natural Computing"
 citation: "Noel Rodriguez Maya, Juan Jose Flores Romero, Sebastien Verel, and Mario Graff Guerrero (2024). Models to classify the difficulty of genetic algorithms to solve continuous optimization problems. Natural Computing."
 paperurl: "https://doi.org/10.1007/s11047-022-09936-9"
+scholarurl: "https://scholar.google.com/citations?view_op=view_citation&hl=es&user=euNI6oEAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=euNI6oEAAAAJ:hvmnpdAuIbkC"
 ---

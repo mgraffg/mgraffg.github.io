@@ -24,7 +24,7 @@ El script [`scripts/perfil_to_site.py`](scripts/perfil_to_site.py) lee `perfil.j
 
 **Entradas:** `perfil.json` en la raíz del repositorio (no se versiona; ver `.gitignore` — nunca debe subirse a git porque contiene datos personales sensibles como CURP y fotografía).
 
-**Salidas:** archivos Markdown en `_publications/` y `_alumni/`, con el front matter que Jekyll/academicpages espera (`title`, `collection`, `category`, `date`, `venue`, `citation`, `paperurl` para publicaciones; `title`, `collection`, `thesis_title`, `degree`, `role`, `year` para alumni). El script solo extrae metadatos bibliográficos/académicos pensados para ser públicos; nunca lee ni escribe campos sensibles (CURP, fotografía, enlaces internos a documentos).
+**Salidas:** archivos Markdown en `_publications/` y `_alumni/`, con el front matter que Jekyll/academicpages espera (`title`, `collection`, `category`, `date`, `venue`, `citation`, `paperurl`, `scholarurl` para publicaciones; `title`, `collection`, `thesis_title`, `degree`, `role`, `institution`, `year` para alumni). Ambas colecciones tienen `output: false` en `_config.yml`: no generan una página por cada publicación/alumno, solo se listan en `/publications/` y `/alumni/` (agrupadas por grado académico en el caso de Alumni). El script solo extrae metadatos bibliográficos/académicos pensados para ser públicos; nunca lee ni escribe campos sensibles (CURP, fotografía, enlaces internos a documentos).
 
 **Dependencias:** solo Python 3 (biblioteca estándar), sin paquetes adicionales.
 

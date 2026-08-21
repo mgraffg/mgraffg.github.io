@@ -2,13 +2,11 @@
 
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/Person">
-    <h3 class="archive__item-title" itemprop="name">
-      <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
-    </h3>
+    <h3 class="archive__item-title" itemprop="name">{{ post.title }}</h3>
 
     {% if post.thesis_title %}
       <p class="archive__item-excerpt" itemprop="description">
-        {{ post.role }}{% if post.degree %}, {{ post.degree }} thesis{% endif %}{% if post.year %} ({{ post.year }}){% endif %}: <em>{{ post.thesis_title }}</em>
+        {{ post.role }}{% if post.year %} ({{ post.year }}){% endif %}{% if post.institution %}, {{ post.institution }}{% endif %}: <em>{{ post.thesis_title }}</em>
       </p>
     {% endif %}
   </article>

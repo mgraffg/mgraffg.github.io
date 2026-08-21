@@ -5,14 +5,12 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
 {% if site.publications.size == 0 %}
   <p>Esta sección se genera automáticamente a partir de Google Scholar (ver <a href="https://github.com/mgraffg/mgraffg.github.io/issues/7">issue #7</a>) y aún no tiene contenido.</p>
+{% else %}
+  <p>These are the featured publications from my research profile. {% if site.author.googlescholar %}For the complete list, see <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.{% endif %}</p>
 {% endif %}
 
 {% if site.publication_category %}
@@ -26,11 +24,11 @@ author_profile: true
         <h2>{{ category[1].title }}</h2><hr />
         {% assign title_shown = true %}
       {% endunless %}
-      {% include archive-single.html %}
+      {% include archive-single-publication.html %}
     {% endfor %}
   {% endfor %}
 {% else %}
   {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+    {% include archive-single-publication.html %}
   {% endfor %}
 {% endif %}

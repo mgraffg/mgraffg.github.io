@@ -63,6 +63,12 @@ Solo se incluyen las entradas con `productoPrincipal: true` (el criterio de
 | `anio` | Año → `date` (se usa `YYYY-01-01`, el JSON no trae mes/día) |
 | `autores[].{nombre, primerApellido, segundoApellido}` | Lista de autores para construir `citation` |
 | `doi` | `paperurl` (se omite si no existe; nunca se usa `documento.uri`) |
+| `cita.urlCita` | `scholarurl`, enlace a la cita específica en Google Scholar (se omite si no existe) |
+
+La colección `publications` tiene `output: false` en `_config.yml`: cada
+entrada es solo un registro de datos, no genera su propia página. `/publications/`
+las lista todas juntas, dejando claro que son las publicaciones **destacadas**
+del perfil único (no un listado exhaustivo).
 
 Mapeo de bucket a `category` (coincide con `publication_category` en `_config.yml`):
 
@@ -85,9 +91,24 @@ de tesis).
 | `gradoAcademico.nombre` | Grado → `degree` (traducido: Maestría → Master's, Doctorado → Ph.D.) |
 | `rol.nombre` | `role` (Director/Co-Director, traducido a inglés) |
 | `fechaObtencionGrado` (o `fechaAprobacion` si falta) | Año → `year` |
+| `claveInstitucionSnp` | `institution`, resuelto mediante una tabla fija en el script (ver abajo) |
 
 Campos deliberadamente **no** usados de `tesisDirigidas`: `documento` (enlace
 interno al oficio de asesorías, no público).
+
+**Sobre `institution`:** `perfil.json` identifica la institución de cada tesis
+con un código interno del catálogo SNP (`claveInstitucionSnp`), no con un
+nombre. El JSON no trae ningún catálogo código→nombre, así que
+`perfil_to_site.py` usa una tabla fija (`INSTITUTION_SNP_CODES`) con los
+únicos dos códigos que aparecen en tesis dirigidas o co-dirigidas: `37` →
+INFOTEC y `138` → Universidad Michoacana de San Nicolás de Hidalgo (UMSNH),
+confirmados manualmente. Si un futuro `perfil.json` trae un código nuevo, el
+script lo deja sin resolver (advertencia en stderr, campo `institution`
+vacío) hasta que se agregue a la tabla.
+
+Igual que en Publications, la colección `alumni` tiene `output: false`: no
+hay una página por alumno. `/alumni/` los agrupa por grado académico
+(Ph.D. primero, luego Master's).
 
 ## Otras secciones del JSON — sugerencias para analizar (no implementadas)
 

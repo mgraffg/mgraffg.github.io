@@ -1,0 +1,23 @@
+{% include base_path %}
+
+{% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/ScholarlyArticle">
+    <h3 class="archive__item-title" itemprop="headline">{{ title }}</h3>
+
+    {% if post.venue %}
+      <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
+    {% endif %}
+
+    {% if post.citation %}
+      <p class="archive__item-excerpt" itemprop="description">{{ post.citation }}</p>
+    {% endif %}
+
+    <p class="publication-links">
+      {% if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" rel="noopener">Download Paper</a>{% endif %}
+      {% if post.paperurl and post.scholarurl %} | {% endif %}
+      {% if post.scholarurl %}<a href="{{ post.scholarurl }}" target="_blank" rel="noopener">View on Google Scholar</a>{% endif %}
+    </p>
+  </article>
+</div>

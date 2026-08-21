@@ -6,9 +6,14 @@ CV data, see CLAUDE.md) and generates:
 
   - _publications/*.md  from featured ("producto principal") scientific
     publications (journal articles, book chapters, books, conference
-    proceedings).
+    proceedings), each carrying its Google Scholar citation link
+    (perfil.json's cita.urlCita) when available. These are collection
+    documents with output disabled in _config.yml: they only ever appear
+    listed on /publications/, never as their own page.
   - _alumni/*.md         from thesis supervisions where the profile owner
-    acted as Director or Co-Director.
+    acted as Director or Co-Director, with the advisee's degree and
+    graduating institution. Same as above: listing-only, no individual
+    page per advisee.
 
 Usage:
     python3 scripts/perfil_to_site.py [path/to/perfil.json]
@@ -36,6 +41,18 @@ DEGREE_EN = {
 ROLE_EN = {
     "Director(a)": "Director",
     "Co-Director (a)": "Co-Director",
+}
+
+# perfil.json identifies the institution of each tesisDirigidas entry by an
+# internal SNP catalog code (claveInstitucionSnp), not by name. The JSON
+# itself never spells out what these codes mean, so this mapping was built
+# by cross-referencing the codes against perfil.cursosImpartidos (which ties
+# code 37 to the "Doctorado en Ciencia de Datos" program) and the profile
+# owner's own trajectory, then confirmed manually. Extend this table if a
+# future perfil.json export introduces theses directed at a new institution.
+INSTITUTION_SNP_CODES = {
+    "37": "INFOTEC",
+    "138": "Universidad Michoacana de San Nicolás de Hidalgo (UMSNH)",
 }
 
 # Maps a perfil.json "aportaciones" bucket to a publication_category key
@@ -109,6 +126,8 @@ def collect_publications(profile):
                 year = year_match.group(0) if year_match else "1900"
                 authors = entry.get("autores")
                 venue = entry.get("nombreRevista") or entry.get("tituloLibro") or ""
+                cita = entry.get("cita") or {}
+                scholarurl = cita.get("urlCita") if isinstance(cita, dict) else ""
                 items.append({
                     "title": title,
                     "category": category,
@@ -117,11 +136,22 @@ def collect_publications(profile):
                     "venue": venue,
                     "citation": build_citation(entry, authors, year),
                     "paperurl": entry.get("doi") or "",
+                    "scholarurl": scholarurl or "",
                 })
             except Exception as exc:
                 print(f"warning: skipping malformed entry in {bucket} (id={entry.get('id')}): {exc}", file=sys.stderr)
     items.sort(key=lambda p: (p["year"], p["title"]))
     return items
+
+
+def resolve_institution(entry):
+    code = entry.get("claveInstitucionSnp")
+    if code in INSTITUTION_SNP_CODES:
+        return INSTITUTION_SNP_CODES[code]
+    institucion = entry.get("institucion")
+    if isinstance(institucion, dict) and institucion.get("nombre"):
+        return institucion["nombre"]
+    return ""
 
 
 def collect_alumni(profile):
@@ -154,12 +184,18 @@ def collect_alumni(profile):
             date = entry.get("fechaObtencionGrado") or entry.get("fechaAprobacion") or ""
             year_match = re.search(r"\d{4}", str(date))
             year = int(year_match.group(0)) if year_match else 0
+            institution = resolve_institution(entry)
+            if not institution:
+                print(f"warning: unknown institution for tesisDirigidas entry (id={entry.get('id')}, "
+                      f"claveInstitucionSnp={entry.get('claveInstitucionSnp')}); leaving institution blank",
+                      file=sys.stderr)
             items.append({
                 "name": name,
                 "thesis_title": thesis_title,
                 "degree": degree_en,
                 "role": role_en,
                 "year": year,
+                "institution": institution,
             })
         except Exception as exc:
             print(f"warning: skipping malformed tesisDirigidas entry (id={entry.get('id')}): {exc}", file=sys.stderr)
@@ -189,6 +225,8 @@ def write_publications(items, out_dir):
         ]
         if item["paperurl"]:
             lines.append(f"paperurl: {yaml_str(item['paperurl'])}")
+        if item["scholarurl"]:
+            lines.append(f"scholarurl: {yaml_str(item['scholarurl'])}")
         lines.append("---")
         lines.append("")
         path = out_dir / f"{idx:02d}_publication.md"
@@ -208,6 +246,8 @@ def write_alumni(items, out_dir):
             f"degree: {yaml_str(item['degree'])}",
             f"role: {yaml_str(item['role'])}",
         ]
+        if item["institution"]:
+            lines.append(f"institution: {yaml_str(item['institution'])}")
         if item["year"]:
             lines.append(f"year: {item['year']}")
         lines.append("---")

@@ -4,5 +4,6 @@ collection: alumni
 thesis_title: "Análisis exploratorio de datos para la detección de productos tecnológicos"
 degree: "Master's"
 role: "Director"
+institution: "INFOTEC"
 year: 2021
 ---
