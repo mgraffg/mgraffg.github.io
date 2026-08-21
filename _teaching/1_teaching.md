@@ -1,6 +1,6 @@
 ---
 title: "Aprendizaje Computacional"
-excerpt: "Curso auto-contenido de machine learning para posgrado en ciencia de datos: cubre teoría bayesiana, algoritmos paramétricos, redes neuronales y ensambles, con fundamentos teóricos y aplicaciones prácticas."
+excerpt: "A self-contained machine learning textbook for a data science graduate program, covering Bayesian theory, parametric algorithms, neural networks, and ensembles, with theoretical foundations and practical applications. Note: the textbook is written in Spanish."
 collection: teaching
 link: https://ingeotec.github.io/AprendizajeComputacional/
 ---
