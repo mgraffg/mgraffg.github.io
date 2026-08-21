@@ -1,75 +1,208 @@
-### your site title here
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve -l -H localhost`. If you change this file, please restart the
+# server process.
 
-title: Mario Graff
-# description: subtitle | affiliations | motto
+# Basic Site Settings
+locale                   : "en-US"
+site_theme               : "default"
+title                    : "Mario Graff"
+title_separator          : "-"
+name                     : &name "Mario Graff"
+description              : &description "Mario Graff's academic portfolio"
+url                      : "" # custom url to be used instead of GitHub repository
+baseurl                  : "" # name of GitHub repository
+repository               : "mgraffg/mgraffg.github.io"
 
-baseurl: "" #name of GitHub repository
-url: "" #custom url to be used instead of GitHub repository
-email: mgraffg@ieee.org
+# Site Author - The following control what appear as part of the author content on the side bar.
+#               If a field is blank the icon and link will not appear, otherwise it will be shown.
+author:
+  avatar           : "profile.png"
+  name             : *name
+  bio              : 'Mario Graff is an <em>Investigador por México</em> at the Ministry of Science, Humanities, Technology, and Innovation (<a href="http://secihti.mx">SECIHTI</a>), commissioned to <a href="http://www.infotec.mx">INFOTEC</a>.'
+  location         :
+  employer         : "INFOTEC"
+  email            : "mgraffg@ieee.org"
 
+  # Academic websites
+  googlescholar    : "https://scholar.google.com/citations?user=euNI6oEAAAAJ" # URL - populated by the Google Scholar update workflow (issue #7)
+  orcid            : "https://orcid.org/0000-0001-6573-4142"
 
-highlighter: rouge
-markdown: kramdown
+  # Repositories and software development
+  github           : "mgraffg"
 
-# Pagination
-paginate: 4
-permalink: /blog/:year/:title/
-paginate_path: /blog/page:num/
+  # Social media
+  linkedin         : "mario-graff-b860338"
+  twitter          : "mgraffg"
 
-# Social media links in footer
-# facebook: "#"
-twitter: "@mgraffg"
-linkedin: "mario-graff-b860338"
-github: "mgraffg"
-# researchgate: "#"
-orcid: "0000-0001-6573-4142"
+# Publication Category
+publication_category:
+  books:
+    title: 'Books'
+  manuscripts:
+    title: 'Journal Articles'
+  conferences:
+    title: 'Conference Papers'
 
-highlighter: rouge
-markdown: kramdown
+# Software Category
+software_category:
+  legalia:
+    title: 'Legal Text Analytics'
+    description: "Tools for the automated analysis of legal texts in the Mexican context. The initial focus is the Diario Oficial de la Federación (DOF), Mexico's official gazette, which has published more than 1.2 million legal provisions since 1917."
+  compstats:
+    title: 'Statistical Comparison of Algorithms'
+    description: "A methodology and toolset for statistically comparing the performance of algorithms in scientific and technological competitions, offering off-the-shelf comparisons with correction mechanisms and confidence intervals."
+  textclassification:
+    title: 'Text Classification'
+    description: "Research on text classification, from bag-of-words baselines to dialect identification, together with tools for large-scale text mining."
 
-# Tracker
+# Site Settings
+breadcrumbs              : false
+words_per_minute         : 160
+future                   : true
+read_more                : "disabled"
+talkmap_link             : false
+comments:
+  provider               : false
+atom_feed:
+  hide                   : false
+
+# Analytics
 analytics:
+  provider               : false
 
-#optimization -> compress.html
-compress_html:
-  clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
-  comments: ["<!-- ", " -->"]
-  endings: [all]
-  ignore:
-    envs: [local]
-  blanklines: false
-  profile: false
-  startings: []
-
-#collection
-collections:
-  projects:
-    output: true
-    permalink: /projects/:path/
-  software:
-    output: true
-    permalink: /software/:path/
-  teaching:
-    output: true
-    permalink: /teaching/:path/
-  talk:
-    output: true
-    permalink: /talk/:path/    
-  
-
-sass:
-  sass_dir: /assets/css/_sass
-  style: compressed
-
+# Reading Files
 include:
   - _pages
-
 exclude:
   - README.md
-  - LICENSE.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - .sass-cache
+  - .jekyll-cache
+  - assets/js/_main.js
+  - assets/js/plugins
+  - assets/js/vendor
 
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Collections
+collections:
+  publications:
+    # No individual page per publication: they are only ever listed on
+    # /publications/, generated in bulk from perfil.json (see issue #6).
+    output: false
+  alumni:
+    # No individual page per advisee: they are only ever listed on
+    # /alumni/, generated in bulk from perfil.json (see issue #6).
+    output: false
+  talks:
+    output: true
+    permalink: /:collection/:path/
+  teaching:
+    output: true
+    permalink: /:collection/:path/
+  software:
+    output: true
+    permalink: /:collection/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  - scope:
+      path: ""
+      type: alumni
+    values:
+      layout: single
+      author_profile: true
+  - scope:
+      path: ""
+      type: talks
+    values:
+      layout: talk
+      author_profile: true
+      share: true
+  - scope:
+      path: ""
+      type: teaching
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  - scope:
+      path: ""
+      type: software
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Outputting
+permalink: /:categories/:title/
+timezone: Etc/UTC
+
+# Plugins
 plugins:
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-email-protect
-  - jekyll-target-blank
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
+
+whitelist:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# HTML Compression
+compress_html:
+  clippings: all
+  ignore:
+    envs: development

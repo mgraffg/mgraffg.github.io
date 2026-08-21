@@ -1,0 +1,77 @@
+/*
+   layout/_footer.scss sets `.page__footer { position: fixed; bottom: 0; }`, which
+   directly contradicts its own comment ("keep footer in normal document flow so custom
+   widgets do not overlap content"). Because the author sidebar (layout/_sidebar.scss) is
+   *also* `position: fixed; height: 100vh`, a fixed footer ends up pinned to the same
+   screen region as the sidebar's tail on any page whose main content is shorter than the
+   sidebar's own content (bio + social links), interleaving their text.
+
+   Restoring the footer to normal document flow (the behavior its own comment describes)
+   fixes that. #main then needs a minimum height so short pages still push the footer
+   below the fixed sidebar instead of right after a couple of lines of bio.
+*/
+.page__footer {
+  position: static;
+}
+
+#main {
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    min-height: calc(100vh - #{$masthead-height});
+  }
+}
+
+/*
+   Research & Software page (/software/): each research theme is rendered as its
+   own card so readers can tell, at a glance, which repositories belong to which
+   line of research instead of seeing one flat list.
+*/
+.software-theme {
+  margin-bottom: 2.5em;
+  padding: 1.25em 1.5em 1.5em;
+  background-color: var(--global-code-background-color);
+  border: 1px solid var(--global-border-color);
+  border-left: 4px solid var(--global-base-color);
+  border-radius: $border-radius;
+
+  &__title {
+    margin-top: 0;
+    border-bottom: none;
+  }
+
+  &__description {
+    margin-top: 0;
+    color: var(--global-text-color-light);
+  }
+
+  &__items {
+    margin-top: 1.5em;
+
+    > .list__item + .list__item,
+    > .grid__item + .grid__item {
+      margin-top: 1.5em;
+      padding-top: 1.5em;
+      border-top: 1px dashed var(--global-border-color);
+    }
+  }
+}
+
+.software-card__title {
+  margin-top: 0;
+}
+
+.software-card__links {
+  margin-top: 0.75em;
+  margin-bottom: 0;
+}
+
+.btn--github {
+  background-color: #24292f;
+
+  i {
+    margin-right: 0.5em;
+  }
+
+  &:hover {
+    background-color: mix(#fff, #24292f, 15%);
+  }
+}

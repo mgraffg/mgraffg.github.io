@@ -1,0 +1,17 @@
+# Order of the links in the site header, per the section map agreed in issue #9.
+
+main:
+  - title: "Research & Software"
+    url: /software/
+
+  - title: "Publications"
+    url: /publications/
+
+  - title: "Alumni"
+    url: /alumni/
+
+  - title: "Course Textbooks"
+    url: /course-textbooks/
+
+  - title: "Talks"
+    url: /talks/

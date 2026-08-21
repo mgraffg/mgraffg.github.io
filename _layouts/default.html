@@ -1,52 +1,31 @@
 ---
-# layout: compress
+layout: compress
 ---
-<!DOCTYPE html>
-<html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-        <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
+{% include base_path %}
 
-        <h1 class="post-headline">{{site.title}}</h1>
-        <h3 class="post-description">{{site.description}}</h3>
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
 
-        {% include navigation.html %}
+  <body>
 
-        {% seo %}
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
 
-        {% include favicon.html %}
+    {{ content }}
 
-        {% include mathjax.html %}
+    <div class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include footer.html %}
+      </footer>
+    </div>
 
-        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
-        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.11.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    {% include scripts.html %}
 
-    </head>
-
-    <body>
-        <main>
-            <article>
-                {{ content }}
-            </article>
-        </main>
-
-        <footer>
-          <p class="copy">
-            <small> &copy; {{site.title}} {{ site.time | date: '%Y' }}
-                    | Powered by Jekyll and
-                    <a target="_blank" href="https://github.com/jitinnair1/gradfolio/">Gradfolio</a>.
-                    Last updated on {{ site.time | date_to_long_string }}
-            </small>
-          </p>
-
-        {% include social-footer.html %}
-
-        </footer>
-
-        {% include analytics.html %}
-
-    </body>
-
+  </body>
 </html>
