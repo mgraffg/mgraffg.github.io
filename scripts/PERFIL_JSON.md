@@ -62,7 +62,7 @@ Solo se incluyen las entradas con `productoPrincipal: true` (el criterio de
 | `nombreRevista` / `tituloLibro` | `venue` |
 | `anio` | Año → `date` (se usa `YYYY-01-01`, el JSON no trae mes/día) |
 | `autores[].{nombre, primerApellido, segundoApellido}` | Lista de autores para construir `citation` |
-| `doi` | `paperurl` (se omite si no existe; nunca se usa `documento.uri`) |
+| `doi` | `paperurl` (se omite si no existe; nunca se usa `documento.uri`). `perfil.json` es inconsistente: casi todas las entradas ya traen la URL completa (`https://doi.org/...`), pero al menos una trae el DOI pelado (`10.1109/MCI.2019.2954668`) — el script normaliza anteponiendo `https://doi.org/` cuando el valor no empieza con `http`, para no generar una liga relativa rota como `/publications/10.1109/...` |
 | `cita.urlCita` | `scholarurl`, enlace a la cita específica en Google Scholar (se omite si no existe) |
 
 La colección `publications` tiene `output: false` en `_config.yml`: cada

@@ -111,6 +111,18 @@ def build_citation(entry, authors, year):
     return citation
 
 
+def resolve_doi_url(doi):
+    doi = (doi or "").strip()
+    if not doi:
+        return ""
+    if doi.startswith("http://") or doi.startswith("https://"):
+        return doi
+    # perfil.json is inconsistent: most entries store the full DOI URL, but
+    # some store a bare DOI (e.g. "10.1109/MCI.2019.2954668"), which used
+    # verbatim as an href resolves as a broken relative link on the site.
+    return f"https://doi.org/{doi}"
+
+
 def collect_publications(profile):
     aportaciones = profile.get("aportaciones") or {}
     if not isinstance(aportaciones, dict):
@@ -147,7 +159,7 @@ def collect_publications(profile):
                     "year": int(year),
                     "venue": venue,
                     "citation": build_citation(entry, authors, year),
-                    "paperurl": entry.get("doi") or "",
+                    "paperurl": resolve_doi_url(entry.get("doi")),
                     "scholarurl": scholarurl or "",
                 })
             except Exception as exc:
