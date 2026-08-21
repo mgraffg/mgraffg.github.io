@@ -22,7 +22,7 @@ repository               : "mgraffg/mgraffg.github.io"
 author:
   avatar           : "profile.png"
   name             : *name
-  bio              : 'Mario Graff is a Researcher of the National Council of Science and Technology (<a href="http://www.conacyt.mx">CONACYT</a>) of Mexico commission to <a href="http://www.infotec.mx">INFOTEC</a>.'
+  bio              : 'Mario Graff is an <em>Investigador por México</em> at the Ministry of Science, Humanities, Technology, and Innovation (<a href="http://secihti.mx">SECIHTI</a>), commissioned to <a href="http://www.infotec.mx">INFOTEC</a>.'
   location         :
   employer         : "INFOTEC"
   email            : "mgraffg@ieee.org"
