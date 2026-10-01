@@ -1,0 +1,4 @@
+{
+  "base_branch": "main",
+  "test_command": "bundle exec jekyll build"
+}
