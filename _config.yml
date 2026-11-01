@@ -22,7 +22,7 @@ repository               : "mgraffg/mgraffg.github.io"
 author:
   avatar           : "profile.png"
   name             : *name
-  bio              : 'Mario Graff is a researcher at the <a href="https://www.cide.edu/division-de-economia-aplicada/">Division of Applied Economics</a> of the Centro de Investigación y Docencia Económicas (<a href="https://www.cide.edu">CIDE</a>).'
+  bio              : 'Mario Graff is a researcher at the <a href="https://www.cide.edu/division-de-economia-aplicada/">División de Economía Aplicada</a> of the Centro de Investigación y Docencia Económicas (<a href="https://www.cide.edu">CIDE</a>).'
   location         :
   employer         : "CIDE"
   email            : "mgraffg@ieee.org"
