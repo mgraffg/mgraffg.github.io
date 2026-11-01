@@ -5,6 +5,8 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% for post in site.talks reversed %}
+{% comment %}Talks are ordered by the numeric `order` front-matter key (newest = highest), newest first. File names sort as strings (10_talk.md < 2_talk.md), so a new talk only needs the next `order` value.{% endcomment %}
+{% assign sorted_talks = site.talks | sort: "order" | reverse %}
+{% for post in sorted_talks %}
   {% include archive-single-talk.html %}
 {% endfor %}
