@@ -88,6 +88,7 @@ exclude:
   - assets/js/_main.js
   - assets/js/plugins
   - assets/js/vendor
+  - perfil.json
 
 # Conversion
 markdown: kramdown
