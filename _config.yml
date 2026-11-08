@@ -58,6 +58,9 @@ software_category:
   textclassification:
     title: 'Text Classification'
     description: "Research on text classification, from bag-of-words baselines to dialect identification, together with tools for large-scale text mining."
+  mobility:
+    title: 'Human Mobility Analysis'
+    description: "Estimating human mobility from social-media data to support public-health decision making."
 
 # Site Settings
 breadcrumbs              : false

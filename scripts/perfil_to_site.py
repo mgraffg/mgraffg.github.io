@@ -112,7 +112,12 @@ def build_citation(entry, authors, year):
 
 
 def resolve_doi_url(doi):
-    doi = (doi or "").strip()
+    # Some exports glue the field's UI label onto the end of the value
+    # (e.g. "https://doi.org/10.1111/lamp.70077Digital Object Identifier (DOI)"),
+    # which breaks the link. Strip only that known label: a generic DOI regex
+    # cannot tell where the DOI ends and the label begins.
+    doi = re.sub(r"\s*Digital\s*Object\s*Identifier\s*\(DOI\)\s*$", "", doi or "", flags=re.IGNORECASE)
+    doi = doi.strip()
     if not doi:
         return ""
     if doi.startswith("http://") or doi.startswith("https://"):
