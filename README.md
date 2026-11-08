@@ -1,19 +1,30 @@
 # mgraffg.github.io
 
-## Desarrollo local con Dev Container
+## Desarrollo local
 
-Este repositorio incluye una configuración de [Dev Container](https://containers.dev/) para desarrollar el sitio Jekyll sin instalar Ruby ni sus dependencias en la máquina host.
+El sitio Jekyll se desarrolla con el Ruby 3.4 instalado localmente mediante Homebrew.
 
-1. Instala la extensión [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) en VS Code.
-2. Abre el repositorio en VS Code y ejecuta **"Dev Containers: Reopen in Container"**.
-3. Al crear el contenedor se ejecuta automáticamente `bundle install`.
+1. Instala Ruby 3.4: `brew install ruby@3.4`.
+2. Pon `/usr/local/opt/ruby@3.4/bin` al inicio del `PATH`. El Ruby del sistema o el Ruby 4.0 predeterminado no funcionan con las gemas de este sitio.
+3. Instala las dependencias:
+
+   ```
+   PATH="/usr/local/opt/ruby@3.4/bin:$PATH" bundle install
+   ```
+
 4. Levanta el sitio con:
 
    ```
-   bundle exec jekyll serve
+   PATH="/usr/local/opt/ruby@3.4/bin:$PATH" LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve -l -H localhost
    ```
 
-5. Abre [http://localhost:4000](http://localhost:4000) en el navegador (el puerto 4000 se reenvía automáticamente).
+5. Abre [http://localhost:4000](http://localhost:4000) en el navegador.
+
+Para solo construir el sitio (sin servirlo):
+
+```
+PATH="/usr/local/opt/ruby@3.4/bin:$PATH" LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll build
+```
 
 ## Generar Publications y Alumni desde el perfil único de SECIHTI
 
