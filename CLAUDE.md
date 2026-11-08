@@ -10,7 +10,7 @@ Instructions to Claude may be given in Spanish or English, but all published sit
 
 ## Development
 
-Local dev is intended to run inside the provided Dev Container (Ruby 3.3 + Node), which runs `bundle install` automatically on create/start.
+Local dev uses Homebrew's Ruby 3.4 (not the default Ruby 4.0, which lacks this repo's gems). Every command below needs the prefix `PATH="/usr/local/opt/ruby@3.4/bin:$PATH" LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8` (shown once here; prepend it to each). Install gems with `bundle install`.
 
 - Serve the site locally: `bundle exec jekyll serve` then open http://localhost:4000
 - Build only: `bundle exec jekyll build`
