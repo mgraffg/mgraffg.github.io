@@ -4,5 +4,6 @@ excerpt: "Outreach talk on how natural language processing is driving innovation
 collection: talks
 order: 10
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/reclutamiento.html
 ---

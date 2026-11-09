@@ -4,5 +4,6 @@ excerpt: "Course on sentiment analysis taught at the Poornima Institute of Engin
 collection: talks
 order: 13
 type: "Curso"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/poornima.html
 ---

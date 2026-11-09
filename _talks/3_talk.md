@@ -4,5 +4,6 @@ excerpt: "Outreach talk on how international competitions drive advances in arti
 collection: talks
 order: 9
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/competencias.html
 ---

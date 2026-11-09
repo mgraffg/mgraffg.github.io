@@ -4,5 +4,6 @@ excerpt: "Outreach talk on the role of natural language processing within data s
 collection: talks
 order: 11
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/ciencia_datos.html
 ---

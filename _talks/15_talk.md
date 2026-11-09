@@ -4,5 +4,6 @@ excerpt: "CONACYT open-science awareness webinar for the general public on open 
 collection: talks
 order: 4
 type: "Divulgación"
+format: video
 link: https://youtu.be/Xbg-pOv_YZg
 ---

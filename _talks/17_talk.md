@@ -4,5 +4,6 @@ excerpt: "Seminar organised by Política Digital for a government audience on th
 collection: talks
 order: 6
 type: "Divulgación"
+format: video
 link: https://youtu.be/rl17-92B-dE
 ---
