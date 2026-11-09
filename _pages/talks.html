@@ -10,18 +10,16 @@ author_profile: true
 {% assign video_talks = sorted_talks | where: "format", "video" %}
 {% assign slide_talks = sorted_talks | where: "format", "slides" %}
 
-{% if video_talks.size > 0 %}
-  <h2 id="recorded-talks" class="archive__subtitle">Recorded talks</h2>
-  <p>Videos of talks as they were given.</p>
-  {% for post in video_talks %}
+{% if slide_talks.size > 0 %}
+  <h2 id="slides" class="archive__subtitle">Slides</h2>
+  {% for post in slide_talks %}
     {% include archive-single-talk.html %}
   {% endfor %}
 {% endif %}
 
-{% if slide_talks.size > 0 %}
-  <h2 id="slides" class="archive__subtitle">Slides</h2>
-  <p>Slide decks from the INGEOTEC talks repository that can be viewed on their own.</p>
-  {% for post in slide_talks %}
+{% if video_talks.size > 0 %}
+  <h2 id="recorded-talks" class="archive__subtitle">Recorded talks</h2>
+  {% for post in video_talks %}
     {% include archive-single-talk.html %}
   {% endfor %}
 {% endif %}
