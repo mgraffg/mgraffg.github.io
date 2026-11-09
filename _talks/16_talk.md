@@ -4,5 +4,6 @@ excerpt: "Colloquium at Industrial Transformation México, aimed at a business a
 collection: talks
 order: 5
 type: "Divulgación"
+format: video
 link: https://youtu.be/xn5Nf7gSxSE
 ---

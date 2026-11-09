@@ -4,5 +4,6 @@ excerpt: "Outreach talk on exploring Mexican law with artificial intelligence. (
 collection: talks
 order: 15
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/LegalIA/index.html
 ---

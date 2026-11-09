@@ -4,5 +4,6 @@ excerpt: "Outreach talk on the relevance of traditional computational learning v
 collection: talks
 order: 12
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/ropec2024.html
 ---

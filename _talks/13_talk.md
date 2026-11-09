@@ -4,5 +4,6 @@ excerpt: "CONACYT scientific webinar held within the PRONAII COVID-19 programme,
 collection: talks
 order: 2
 type: "Divulgación"
+format: video
 link: https://youtu.be/Nsk0b_3TE08
 ---

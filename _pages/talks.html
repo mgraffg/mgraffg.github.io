@@ -5,8 +5,23 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% comment %}Talks are ordered by the numeric `order` front-matter key (newest = highest), newest first. File names sort as strings (10_talk.md < 2_talk.md), so a new talk only needs the next `order` value.{% endcomment %}
+{% comment %}Talks are ordered by the numeric `order` front-matter key (newest = highest), newest first. File names sort as strings (10_talk.md < 2_talk.md), so a new talk only needs the next `order` value. Each talk has `format: video` (a recording) or `format: slides` (a deck) and is listed only in the matching section; a talk that exists in both formats has two files with the same title.{% endcomment %}
 {% assign sorted_talks = site.talks | sort: "order" | reverse %}
-{% for post in sorted_talks %}
-  {% include archive-single-talk.html %}
-{% endfor %}
+{% assign video_talks = sorted_talks | where: "format", "video" %}
+{% assign slide_talks = sorted_talks | where: "format", "slides" %}
+
+{% if video_talks.size > 0 %}
+  <h2 id="recorded-talks" class="archive__subtitle">Recorded talks</h2>
+  <p>Videos of talks as they were given.</p>
+  {% for post in video_talks %}
+    {% include archive-single-talk.html %}
+  {% endfor %}
+{% endif %}
+
+{% if slide_talks.size > 0 %}
+  <h2 id="slides" class="archive__subtitle">Slides</h2>
+  <p>Slide decks from the INGEOTEC talks repository that can be viewed on their own.</p>
+  {% for post in slide_talks %}
+    {% include archive-single-talk.html %}
+  {% endfor %}
+{% endif %}

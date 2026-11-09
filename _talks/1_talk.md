@@ -4,5 +4,6 @@ excerpt: "Introductory course on text classification and opinion mining for acad
 collection: talks
 order: 7
 type: "Curso"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/general.html
 ---

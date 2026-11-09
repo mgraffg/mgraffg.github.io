@@ -26,6 +26,11 @@
       </div>
     {% endif %}
     <h2 class="archive__item-title" itemprop="headline">
+      {% if post.format == "video" %}
+        <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="sr-only">Video: </span>
+      {% elsif post.format == "slides" %}
+        <i class="fas fa-fw fa-chalkboard-teacher" aria-hidden="true"></i><span class="sr-only">Slides: </span>
+      {% endif %}
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}

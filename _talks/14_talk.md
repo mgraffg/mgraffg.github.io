@@ -4,5 +4,6 @@ excerpt: "Keynote for the Sociedad Mexicana de Inteligencia Artificial (SMIA), a
 collection: talks
 order: 3
 type: "Divulgación"
+format: video
 link: https://youtu.be/8Dnll2whd6s
 ---

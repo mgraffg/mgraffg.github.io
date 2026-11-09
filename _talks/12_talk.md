@@ -4,5 +4,6 @@ excerpt: "Talk at the Data Science Lecture Series (Ciclo de Conferencias en Cien
 collection: talks
 order: 1
 type: "Divulgación"
+format: video
 link: https://www.youtube.com/live/xFrSkmRgm7M
 ---

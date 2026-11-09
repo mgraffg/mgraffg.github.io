@@ -4,5 +4,6 @@ excerpt: "Outreach talk on how natural language processing can transform educati
 collection: talks
 order: 8
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/educacion.html
 ---

@@ -4,5 +4,6 @@ excerpt: "Outreach talk on evolutionary algorithms applied to natural language p
 collection: talks
 order: 14
 type: "Divulgación"
+format: slides
 link: https://ingeotec.github.io/talks/TextClassification/quantum.html
 ---

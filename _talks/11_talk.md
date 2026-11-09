@@ -4,5 +4,6 @@ excerpt: "Outreach talk at a symposium organised by the Secretaría de Ciencia, 
 collection: talks
 order: 17
 type: "Divulgación"
+format: video
 link: https://www.youtube.com/live/ix7k3FSqy30
 ---
